@@ -13,7 +13,7 @@ pipeline {
         stage('Fast Build') {
             steps {
                 echo '2. Packaging MLRIT Dashboard WAR...'
-                bat 'mvn clean package -DskipTests --batch-mode'
+                bat 'mvn clean package -DskipTests --batch-mode -o'
             }
         }
         stage('Deploy') {
