@@ -16,7 +16,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo '3. Deploying WAR to Tomcat application server...'
-                bat 'copy /Y target\task-tracker.war "C:\Program Files (x86)\Apache Software Foundation\Tomcat 9.0\webapps"'
+                bat 'copy /Y target\\task-tracker.war "C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 9.0\\webapps\"'
             }
         }
         stage('Verify Health') {
