@@ -6,25 +6,25 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo '1. Fetching source code...'
+                echo '1. Fetching source code from Git...'
                 checkout scm
             }
         }
         stage('Fast Build') {
             steps {
-                echo '2. Compiling and packaging WAR file...'
+                echo '2. Packaging MLRIT Dashboard WAR...'
                 bat 'mvn clean package -DskipTests --batch-mode'
             }
         }
         stage('Deploy') {
             steps {
-                echo '3. Copying WAR to Tomcat...'
+                echo '3. Copying WAR to Tomcat webapps...'
                 bat 'copy /Y target\\mlritcollege.war "C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 9.0\\webapps\\"'
             }
         }
         stage('Verify Health') {
             steps {
-                echo '4. Checking application health...'
+                echo '4. Verifying deployment health...'
                 powershell '''
                 $url = "http://localhost:9090/mlritcollege/health.html"
                 $retries = 10
@@ -43,6 +43,11 @@ pipeline {
                 throw "Tomcat health check timed out."
                 '''
             }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'src/main/webapp/index.html', allowEmptyArchive: false
         }
     }
 }
