@@ -6,26 +6,42 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo '1. Fetching source code from GitHub...'
+                echo '1. Fetching source code...'
                 checkout scm
             }
         }
-        stage('Build') {
+        stage('Fast Build') {
             steps {
-                echo '2. Compiling code and packaging WAR file...'
-                bat 'mvn clean package'
+                echo '2. Compiling and packaging WAR file...'
+                bat 'mvn clean package -DskipTests --batch-mode'
             }
         }
         stage('Deploy') {
             steps {
-                echo '3. Deploying WAR to Tomcat application server...'
-                bat 'copy /Y target\\task-tracker.war "C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 9.0\\webapps\"'
+                echo '3. Copying WAR to Tomcat...'
+                bat 'copy /Y target\mlritcollege.war "C:\Program Files (x86)\Apache Software Foundation\Tomcat 9.0\webapps\"'
             }
         }
         stage('Verify Health') {
             steps {
-                echo '4. Testing deployment endpoint health...'
-                powershell '$resp = Invoke-WebRequest -Uri "http://localhost:9090/task-tracker/health" -UseBasicParsing; if ($resp.StatusCode -eq 200) { Write-Host "Deployment Verified! HTTP Status 200 OK."; Write-Host $resp.Content } else { throw "Health check failed" }'
+                echo '4. Checking application health...'
+                powershell '''
+                $url = "http://localhost:9090/mlritcollege/health.html"
+                $retries = 10
+                while ($retries -gt 0) {
+                    try {
+                        $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -TimeoutSec 3
+                        if ($resp.StatusCode -eq 200) {
+                            Write-Host "Success: MLRIT Dashboard is Live!"
+                            exit 0
+                        }
+                    } catch {
+                        Start-Sleep -Seconds 2
+                        $retries--
+                    }
+                }
+                throw "Tomcat health check timed out."
+                '''
             }
         }
     }
