@@ -1,1 +1,122 @@
-<!DOCTYPE html><html><head><title>Task Tracker Portal</title></head><body style="font-family: Arial, sans-serif; padding: 40px; text-align: center;"><h1>Task Tracker Application</h1><p>Automated CI/CD Deployment via Jenkins Pipeline</p><a href="health"><button style="padding: 10px 20px; font-size: 16px;">Check Application Status</button></a></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLRIT - Marri Laxman Reddy Institute of Technology Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { 800: '#002244', 900: '#003366', 950: '#001a33' },
+                        gold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+    <header class="bg-navy-900 text-white shadow-xl sticky top-0 z-50 border-b-4 border-gold-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <div class="bg-white p-2.5 rounded-xl shadow-md border border-slate-200">
+                        <svg class="w-10 h-10 text-navy-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white">MARRI LAXMAN REDDY</h1>
+                        <p class="text-xs sm:text-sm font-medium text-gold-400 tracking-wider uppercase">Institute of Technology (MLRIT) &bull; Autonomous</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-2 text-xs font-semibold">
+                    <span class="bg-navy-950/80 text-gold-400 border border-gold-500/40 px-3 py-1.5 rounded-full shadow-inner flex items-center gap-1.5"><i class="fa-solid fa-award text-gold-400"></i> NAAC A Grade</span>
+                    <span class="bg-navy-950/80 text-sky-300 border border-sky-500/30 px-3 py-1.5 rounded-full shadow-inner flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-sky-400"></i> NBA Accredited</span>
+                    <span class="bg-navy-950/80 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-full shadow-inner flex items-center gap-1.5"><i class="fa-solid fa-building-columns text-emerald-400"></i> AICTE Approved</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3 text-center sm:text-left">
+                <span class="relative flex h-3.5 w-3.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500"></span>
+                </span>
+                <div>
+                    <span class="text-sm font-bold text-slate-800">Deployment Status:</span>
+                    <span class="text-sm text-slate-600 ml-1">CI/CD Automated Pipeline Active</span>
+                </div>
+            </div>
+            <div class="flex items-center bg-emerald-50 text-emerald-800 text-xs font-bold px-4 py-2 rounded-xl border border-emerald-200">
+                <i class="fa-solid fa-server mr-2 text-emerald-600"></i> System Operational / Status: 200 OK
+            </div>
+        </div>
+
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Enrolled</p>
+                        <h2 class="text-3xl font-extrabold text-navy-900 mt-1">5,000+</h2>
+                        <p class="text-xs font-medium text-emerald-600 mt-1 flex items-center"><i class="fa-solid fa-arrow-trend-up mr-1"></i> Active Students</p>
+                    </div>
+                    <div class="p-3.5 bg-navy-900/10 text-navy-900 rounded-xl"><i class="fa-solid fa-user-graduate text-2xl"></i></div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Expert Faculty</p>
+                        <h2 class="text-3xl font-extrabold text-navy-900 mt-1">350+</h2>
+                        <p class="text-xs font-medium text-amber-600 mt-1 flex items-center"><i class="fa-solid fa-certificate mr-1"></i> PhDs & Researchers</p>
+                    </div>
+                    <div class="p-3.5 bg-gold-500/15 text-gold-600 rounded-xl"><i class="fa-solid fa-chalkboard-user text-2xl"></i></div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Placement Record</p>
+                        <h2 class="text-3xl font-extrabold text-emerald-600 mt-1">95%</h2>
+                        <p class="text-xs font-medium text-slate-500 mt-1">Consistent Success Rate</p>
+                    </div>
+                    <div class="p-3.5 bg-emerald-500/10 text-emerald-600 rounded-xl"><i class="fa-solid fa-briefcase text-2xl"></i></div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Academic Branches</p>
+                        <h2 class="text-3xl font-extrabold text-navy-900 mt-1">10+</h2>
+                        <p class="text-xs font-medium text-sky-600 mt-1">UG & PG Programs</p>
+                    </div>
+                    <div class="p-3.5 bg-sky-500/10 text-sky-600 rounded-xl"><i class="fa-solid fa-diagram-project text-2xl"></i></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-navy-950 text-slate-400 py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+            <div>
+                <p class="font-semibold text-slate-300">Marri Laxman Reddy Institute of Technology (MLRIT)</p>
+                <p class="mt-1">Dundigal, Hyderabad, Telangana 500043</p>
+            </div>
+            <div class="text-center sm:text-right">
+                <p>&copy; 2026 MLRIT. All rights reserved.</p>
+                <p class="text-slate-500 mt-1">Automated CI/CD Pipeline Deployed</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
