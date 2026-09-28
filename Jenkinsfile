@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo '3. Copying WAR to Tomcat...'
-                bat 'copy /Y target\mlritcollege.war "C:\Program Files (x86)\Apache Software Foundation\Tomcat 9.0\webapps\"'
+                bat 'copy /Y target\\mlritcollege.war "C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 9.0\\webapps\\"'
             }
         }
         stage('Verify Health') {
