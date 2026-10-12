@@ -24,17 +24,29 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-2
 
-      - name: Install AWS CLI
+      - name: Install ZIP utility
+        run: sudo apt-get update && sudo apt-get install -y zip
+
+      - name: Verify deployment files
         run: |
-          aws --version
+          test -f appspec.yml
+          test -f app.py
+          test -f requirements.txt
+          test -f scripts/install_app_dependencies
+          test -f scripts/start_server
+          echo "All required deployment files are present."
 
       - name: Package application
         run: |
-          zip -r deployment.zip . \
-            -x ".git/*" \
-               ".github/*" \
-               "__pycache__/*" \
-               "*.pyc"
+          zip -r deployment.zip \
+            appspec.yml \
+            app.py \
+            requirements.txt \
+            scripts \
+            -x "*.pyc" "__pycache__/*"
+
+      - name: Verify ZIP contents
+        run: unzip -l deployment.zip
 
       - name: Upload deployment package to S3
         run: |
